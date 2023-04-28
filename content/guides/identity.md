@@ -33,7 +33,7 @@ at://did:plc:bv6ggog3tya2z3vxsub7hnal
 
 The relationship between them can be visualized as:
 
-<pre style="line-height: 1.2;"><code>┌──────────────────┐                 ┌───────────────┐ 
+<pre style="line-height: 1.2;"><code>┌──────────────────┐                 ┌───────────────┐
 │ DNS name         ├──resolves to──→ │ DID           │
 │ (alice.host.com) │                 │ (did:plc:...) │
 └──────────────────┘                 └─────┬─────────┘
@@ -41,7 +41,7 @@ The relationship between them can be visualized as:
        │                               resolves to
        │                                   │
        │                                   ↓
-       │                            ┌───────────────┐ 
+       │                            ┌───────────────┐
        └───────────references───────┤ DID Document  │
                                     │ {"id":"..."}  │
                                     └───────────────┘
@@ -53,7 +53,7 @@ The DNS handle is a user-facing identifier — it should be shown in UIs and pro
   <tr>
    <td><strong>Handles</strong>
    </td>
-   <td>Handles are DNS names. They are resolved using the <a href="/lexicons/com-atproto-handle">com.atproto.identity.resolveHandle()</a> XRPC method and should be confirmed by a matching entry in the DID document.
+   <td>Handles are DNS names. They are resolved using the <a href="/lexicons/com-atproto-identity#comatprotoidentityresolvehandle">com.atproto.identity.resolveHandle()</a> XRPC method and should be confirmed by a matching entry in the DID document.
    </td>
   </tr>
   <tr>
@@ -88,13 +88,13 @@ The [DID standard](https://www.w3.org/TR/did-core/) supports custom "methods" of
 - **Key rotation**. Users must be able to rotate keypairs without losing their identity.
 - **Decentralized governance**. The network should not be governed by a single stakeholder; it must be an open network or a consortium of providers.
 
-At present, none of the DID methods meet our standards fully. **Therefore we have chosen to support [did-web](https://w3c-ccg.github.io/did-method-web/) and a temporary method we've created called [did-placeholder](/specs/did-plc).** We expect this situation to evolve as new solutions emerge.
+At present, none of the DID methods meet our standards fully. **Therefore we have chosen to support [did:web](https://w3c-ccg.github.io/did-method-web/) and a temporary method we've created called [did:placeholder](/specs/did-plc).** We expect this situation to evolve as new solutions emerge.
 
 ## Handle Resolution
 
 Handles in ATP are domain names which resolve to a DID, which in turn resolves to a DID Document containing the user's signing pubkey and hosting service.
 
-Handle resolution uses the [`com.atproto.identity.resolveHandle`](/lexicons/com-atproto-handle) XRPC method. The method call should be sent to the server identified by the handle, and the handle should be passed as a parameter.
+Handle resolution uses the [`com.atproto.identity.resolveHandle`](/lexicons/com-atproto-identity#comatprotoidentityresolvehandle) XRPC method. The method call should be sent to the server identified by the handle, and the handle should be passed as a parameter.
 
 Here is the algorithm in pseudo-typescript:
 
